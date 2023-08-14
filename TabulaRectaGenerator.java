@@ -11,7 +11,7 @@ public class TabulaRectaGenerator {
         int initializer = INITIAL_VALUE;
         for(int i = 0 ; i < 26; i++) {
             matriz.add(generateAuxList(initializer));
-            System.out.println(generateAuxList(initializer)); // Used to test the TabulaRecta, remove later!!
+           //System.out.println(generateAuxList(initializer)); // Used to test the TabulaRecta, remove later!!
             initializer++;
         }
         return matriz;
