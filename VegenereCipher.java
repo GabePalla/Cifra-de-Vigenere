@@ -6,6 +6,7 @@ public abstract class VegenereCipher {
     protected List<List> tabulaRecta;
     protected final int INITIAL_VALUE = 65;
     protected final int FINAL_VALUE = 90;
+    protected final int TOTAL_CHARACTERS = 26;
 
     protected void setData(String text, String key) {
         this.text = text.toUpperCase().replace(" ", "");

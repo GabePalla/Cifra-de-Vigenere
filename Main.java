@@ -1,15 +1,25 @@
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        Encrypting encoding = new Encrypting();
-        Decrypting decrypeting = new Decrypting();
-        encoding.setTabulaRecta(TabulaRectaGenerator.generateTabulaRecta());
-        encoding.setData("BATATA", "FOFO");
-        String texto = encoding.encrypting();
-        System.out.println(texto);
+        List<List> tabulaRecta = TabulaRectaGenerator.generateTabulaRecta();
 
-        decrypeting.setTabulaRecta(TabulaRectaGenerator.generateTabulaRecta());
-        decrypeting.setData(texto, "FOFO");
-        System.out.println(decrypeting.decrypting());
+        Encrypting encrypting = new Encrypting();
+        encrypting.setTabulaRecta(tabulaRecta);
+        encrypting.setData("TEXTO DE TESTE", "FOGO");
+
+        String encryptedText = encrypting.encrypting();
+
+        Decrypting decrypting = new Decrypting();
+        decrypting.setTabulaRecta(tabulaRecta);
+        decrypting.setData(encryptedText, "FOGO");
+
+        String decryptedText = decrypting.decrypting();
+
+        System.out.println("Encrypted Text: " + encryptedText);
+        System.out.println("Decrypted Text: " + decryptedText);
+        
+
 
     }
 }

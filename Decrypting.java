@@ -10,20 +10,21 @@ public class Decrypting extends VegenereCipher{
             if(keyCounter == key.length()) {
                 keyCounter = 0;
             }
-            int charNumericValue = key.charAt(keyCounter);
-            keyCounter++;
-            //AQUIII!
-            if(text.charAt(textCounter) > charNumericValue) {
-                indexColumn = (FINAL_VALUE - charNumericValue) - (FINAL_VALUE - text.charAt(textCounter));
+
+            int currKeyNumericValue = key.charAt(keyCounter);
+            int currTextCharNumericValue = text.charAt(textCounter);
+
+            if(currTextCharNumericValue > currKeyNumericValue) {
+                indexColumn = (FINAL_VALUE - currKeyNumericValue) - (FINAL_VALUE - currTextCharNumericValue);
             } else {
-                int varCalculo = charNumericValue - text.charAt(textCounter);
-                if(varCalculo == 0) {
+                if(currKeyNumericValue - currTextCharNumericValue == 0) {
                     indexColumn = 0;
                 } else {
-                    indexColumn = (26 - (charNumericValue - text.charAt(textCounter)));
+                    indexColumn = (TOTAL_CHARACTERS - (currKeyNumericValue - currTextCharNumericValue));
                 }
             }
-            //AQUIII!
+            
+            keyCounter++;
             textCounter++;
 
             decryptedText.append(tabulaRecta.get(0).get(indexColumn));
