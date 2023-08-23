@@ -1,3 +1,4 @@
+package Cipher;
 public class Encrypting extends VegenereCipher{
 
     public String encrypting() {

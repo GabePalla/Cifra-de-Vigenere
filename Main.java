@@ -1,5 +1,9 @@
 import java.util.List;
 
+import Cipher.Decrypting;
+import Cipher.Encrypting;
+import Cipher.TabulaRectaGenerator;
+
 public class Main {
     public static void main(String[] args) {
         List<List> tabulaRecta = TabulaRectaGenerator.generateTabulaRecta();

@@ -1,3 +1,5 @@
+package Cipher;
+
 public class Decrypting extends VegenereCipher{
 
     public String decrypting() {
