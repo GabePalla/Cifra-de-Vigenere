@@ -1,4 +1,5 @@
 package Cipher;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,18 +12,18 @@ public class TabulaRectaGenerator {
         List<List> matriz = new ArrayList<>();
 
         int initializer = TabulaRectaGenerator.INITIAL_VALUE;
-        for(int i = 0 ; i < TabulaRectaGenerator.TOTAL_CHARACTERS; i++) {
+        for (int i = 0; i < TabulaRectaGenerator.TOTAL_CHARACTERS; i++) {
             matriz.add(TabulaRectaGenerator.generateAuxList(initializer));
             initializer++;
         }
         return matriz;
     }
-    
+
     private static List<Character> generateAuxList(int initialValue) {
         List<Character> auxList = new ArrayList<>();
-        for(int i = 0 ; i < TabulaRectaGenerator.TOTAL_CHARACTERS; i++) {
-            auxList.add(Character.valueOf( (char) initialValue));
-            if(initialValue == TabulaRectaGenerator.FINAL_VALUE) {
+        for (int i = 0; i < TabulaRectaGenerator.TOTAL_CHARACTERS; i++) {
+            auxList.add(Character.valueOf((char) initialValue));
+            if (initialValue == TabulaRectaGenerator.FINAL_VALUE) {
                 initialValue = TabulaRectaGenerator.INITIAL_VALUE;
             } else {
                 initialValue++;

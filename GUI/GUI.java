@@ -1,59 +1,136 @@
 package GUI;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridLayout;
-import java.util.Locale;
 
-import javax.swing.BoxLayout;
+import java.awt.Color;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.JToolBar;
-public class GUI extends JFrame{
 
-    GUI() {
-        JToolBar toolbar = new JToolBar();
-        JPanel panelToolBar = new JPanel();
+import Cipher.Decrypting;
+import Cipher.Encrypting;
 
-        JButton encrypt = new JButton("Encrypt");
-        JButton decrypt = new JButton("Decrypt");
+public class GUI extends JFrame {
+
+    private JButton actionButton;
+    private JButton encrypt;
+    private JButton decrypt;
+    private JToolBar toolbar;
+    private JPanel panelToolBar;
+    private JTextArea inputTextArea;
+    private JTextArea outputTextArea;
+    private JTextField key;
+    private JLabel inputLabel;
+    private JLabel outputLabel;
+    private JLabel keyLabel;
+
+    public GUI() {
+        this.GUIDefaultInitializr();
+        this.toolBarEncryptButtonAction();
+        this.toolBarDecryptButtonAction();
+    }
+
+    private void GUIDefaultInitializr() {
+        toolbar = new JToolBar();
+        panelToolBar = new JPanel();
+
+        this.encrypt = new JButton("Encrypt");
+        this.encrypt.setBackground(new Color(176, 196, 222));
+        decrypt = new JButton("Decrypt");
+        this.decrypt.setBackground(new Color(248, 248, 255));
 
         panelToolBar.add(encrypt);
         panelToolBar.add(decrypt);
 
         toolbar.add(panelToolBar);
         toolbar.setFloatable(false);
-        
-        JTextArea inputField = new JTextArea();
-        inputField.setBounds(16, 50, 950, 150);
-        inputField.setBackground(new Color(217, 217, 217));
 
-        JTextArea outputField = new JTextArea();
-        outputField.setBounds(16, 300, 950, 150);
-        outputField.setBackground(new Color(217, 217, 217));
-        outputField.setEditable(false);
+        inputTextArea = new JTextArea();
+        inputTextArea.setBounds(16, 50, 950, 150);
+        inputTextArea.setBackground(new Color(217, 217, 217));
 
-        JButton b = new JButton("Click");
-        b.setBounds(860,497,110,50);
-        
-        JLabel inputLabel = new JLabel("INPUT");
-        inputLabel.setBounds(16, 30, 50, 100);
+        outputTextArea = new JTextArea();
+        outputTextArea.setBounds(16, 300, 950, 150);
+        outputTextArea.setBackground(new Color(217, 217, 217));
+        outputTextArea.setEditable(false);
 
-        JLabel outputLabel = new JLabel("OUTPUT");
-        outputLabel.setBounds(16, 280, 50, 100);
+        key = new JTextField();
+        key.setBounds(16, 490, 250, 45);
+        key.setBackground(new Color(217, 217, 217));
 
-        
-        add(b); add(outputLabel); add(inputLabel); add(outputField); add(inputField); add(toolbar); 
+        actionButton = new JButton("Encrypt");
+        actionButton.setBounds(855, 497, 110, 50);
+        actionButton.setBackground(new Color(248, 248, 255));
 
-        setTitle("Vegenere Cipher");
+        inputLabel = new JLabel("INPUT:");
+        inputLabel.setBounds(20, -10, 50, 100);
+
+        outputLabel = new JLabel("OUTPUT:");
+        outputLabel.setBounds(20, 240, 50, 100);
+
+        keyLabel = new JLabel("KEY:");
+        keyLabel.setBounds(20, 430, 50, 100);
+
+        add(actionButton);
+        add(outputLabel);
+        add(inputLabel);
+        add(keyLabel);
+        add(outputTextArea);
+        add(inputTextArea);
+        add(key);
+        add(toolbar);
+
+        setTitle("Vigenère cipher");
         setSize(1000, 600);
         setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
-    public static void main(String[] args) {
-        new GUI();
+
+    private void toolBarEncryptButtonAction() {
+        this.encrypt.addActionListener(action -> {
+            this.actionButton.setText("Encrypt");
+            this.encrypt.setBackground(new Color(176, 196, 222));
+            this.decrypt.setBackground(new Color(248, 248, 255));
+        });
+    }
+
+    private void toolBarDecryptButtonAction() {
+        this.decrypt.addActionListener(action -> {
+            this.actionButton.setText("Decrypt");
+            this.decrypt.setBackground(new Color(176, 196, 222));
+            this.encrypt.setBackground(new Color(248, 248, 255));
+        });
+    }
+
+    public void actionButton(Encrypting encrypt, Decrypting decrypt) {
+        this.actionButton.addActionListener(action -> {
+            if (this.actionButton.getText().equalsIgnoreCase("Encrypt")) {
+                encrypt.setData(this.inputTextArea.getText(), key.getText());
+                outputTextArea.setText(encrypt.encrypting());
+            } else {
+                decrypt.setData(this.inputTextArea.getText(), key.getText());
+                outputTextArea.setText(decrypt.decrypting());
+            }
+        });
+    }
+
+    public JTextArea getInputTextArea() {
+        return inputTextArea;
+    }
+
+    public void setInputTextArea(JTextArea inputTextArea) {
+        this.inputTextArea = inputTextArea;
+    }
+
+    public JTextArea getOutputTextArea() {
+        return outputTextArea;
+    }
+
+    public void setOutputTextArea(JTextArea outputTextArea) {
+        this.outputTextArea = outputTextArea;
     }
 }
