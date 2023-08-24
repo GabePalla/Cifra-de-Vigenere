@@ -50,16 +50,16 @@ public class GUI extends JFrame {
 
         inputTextArea = new JTextArea();
         inputTextArea.setBounds(16, 50, 950, 150);
-        inputTextArea.setBackground(new Color(217, 217, 217));
+        inputTextArea.setBackground(new Color(255,250,250));
 
         outputTextArea = new JTextArea();
         outputTextArea.setBounds(16, 300, 950, 150);
-        outputTextArea.setBackground(new Color(217, 217, 217));
+        outputTextArea.setBackground(new Color(255,250,250));
         outputTextArea.setEditable(false);
 
         key = new JTextField();
         key.setBounds(16, 490, 250, 45);
-        key.setBackground(new Color(217, 217, 217));
+        key.setBackground(new Color(255,250,250));
 
         actionButton = new JButton("Encrypt");
         actionButton.setBounds(855, 497, 110, 50);
